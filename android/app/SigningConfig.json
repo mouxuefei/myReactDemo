@@ -1,0 +1,6 @@
+{
+  "storeFile": "release.jks",
+  "storePassword": "123456",
+  "keyAlias": "mou",
+  "keyPassword": "123456"
+}
