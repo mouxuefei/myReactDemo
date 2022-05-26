@@ -1,0 +1,255 @@
+{
+  "env": {
+    "react-native/react-native": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "react-native", "react-hooks", "prettier", "import"],
+  "rules": {
+    // 默认规则
+    // class 成员间需要留有空行
+    "lines-between-class-members": [
+      "warn",
+      "always",
+      {"exceptAfterSingleLine": true}
+    ],
+    // 关闭悬垂下划线检查
+    "no-underscore-dangle": "off",
+    // 关闭全局 require 检查
+    "global-require": "off",
+    // 关闭类方法强制使用 this 检查
+    "class-methods-use-this": "off",
+    // 单个文件不能有多个 class
+    "max-classes-per-file": "error",
+    // 嵌套三元运算符报错
+    "no-nested-ternary": "error",
+    // 暂时认为关掉可以增强代码可读性，逻辑更清晰
+    "no-lonely-if": "off",
+    // https://eslint.org/docs/rules/no-class-assign
+    "no-class-assign": "error",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/extensions.md
+    "import/extensions": "off",
+    // https://eslint.org/docs/rules/radix 使用 parseInt 不检查是否传入了进制参数
+    "radix": "off",
+    // https://eslint.org/docs/rules/object-shorthand#require-object-literal-shorthand-syntax-object-shorthand
+    "object-shorthand": "warn",
+    // https://eslint.org/docs/rules/no-plusplus#disallow-the-unary-operators--and----no-plusplus 禁用 ++ -- 自增，自减运算符
+    "no-plusplus": ["error", {"allowForLoopAfterthoughts": true}],
+    // https://eslint.org/docs/rules/no-else-return#disallow-return-before-else-no-else-return off，开启会影响代码可读性，为了省而省不是太好
+    "no-else-return": ["off", {"allowElseIf": true}],
+    // https://eslint.org/docs/rules/padding-line-between-statements
+    "padding-line-between-statements": "warn",
+    // https://eslint.org/docs/rules/strict#require-or-disallow-strict-mode-directives-strict
+    "strict": "warn",
+    // https://eslint.org/docs/rules/no-shadow-restricted-names#disallow-shadowing-of-restricted-names-no-shadow-restricted-names
+    "no-shadow": "off",
+    // https://eslint.org/docs/rules/no-restricted-syntax#disallow-specified-syntax-no-restricted-syntax
+    "no-restricted-syntax": "warn",
+    // https://eslint.org/docs/rules/prefer-destructuring#prefer-destructuring-from-arrays-and-objects-prefer-destructuring
+    "prefer-destructuring": "warn",
+    // https://eslint.org/docs/rules/spaced-comment#requires-or-disallows-a-whitespace-space-or-tab-beginning-a-comment-spaced-comment
+    "spaced-comment": "warn",
+    // https://eslint.org/docs/rules/prefer-template#suggest-using-template-literals-instead-of-string-concatenation-prefer-template
+    "prefer-template": "warn",
+    "no-empty-function": "off",
+
+    // import 相关
+    // 解决import from bookln-utils报错
+    "import/no-extraneous-dependencies": "off",
+    // 重复 import 报警告 https://cn.eslint.org/docs/rules/no-duplicate-imports
+    "import/no-duplicates": "warn",
+    // TODO: jaybo - 先关闭，等代码稳定之后再开启
+    "import/no-default-export": "off",
+    // https://github.com/airbnb/javascript/issues/1365
+    // https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
+    // https://blog.neufund.org/why-we-have-banned-default-exports-and-you-should-do-the-same-d51fdc2cf2ad
+    "import/prefer-default-export": "off",
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/order.md
+    "import/order": "warn",
+
+    // React 相关
+    // jsx 文件后缀名只能为 js, jsx, tsx 否则报警告
+    "react/jsx-filename-extension": [
+      "warn",
+      {"extensions": [".js", ".jsx", ".tsx"]}
+    ],
+    // 未使用的 state 报警告
+    "react/no-unused-state": "warn",
+    // jsx 中 props 必须要用 {} 包括起来， children 则忽略
+    "react/jsx-curly-brace-presence": [
+      "warn",
+      {"props": "always", "children": "ignore"}
+    ],
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "ignoreDOMComponents": true,
+        "ignoreRefs": true,
+        "allowArrowFunctions": false,
+        "allowFunctions": false,
+        "allowBind": false
+      }
+    ],
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/sort-comp.md
+    "react/sort-comp": [
+      1,
+      {
+        "order": [
+          "static-methods",
+          "statics",
+          "defaultProps",
+          "instance-variables",
+          "lifecycle",
+          "navigation-life-cycle",
+          "with-screen-callbacks"
+
+          // TODO: 暂时关掉，好像不太科学
+          // "everything-else",
+          // "rendering",
+
+          // "/^on.+$/",
+          // "/^_on.+$/",
+        ],
+        "groups": {
+          "rendering": ["render", "/^render.+$/", "/^_render.+$/"],
+          "with-screen-callbacks": ["onUserChange", "onApiRequestsFinish"],
+          "navigation-life-cycle": [
+            "componentDidAppear",
+            "componentDidDisappear",
+            "navigationButtonPressed"
+          ]
+        }
+      }
+    ],
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-boolean-value.md
+    "react/jsx-boolean-value": "off",
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/static-property-placement.md 关闭静态属性位置检查
+    "react/static-property-placement": "off",
+    // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/state-in-constructor.md 在 constructor 中初始化 state，否则警告
+    "react/state-in-constructor": "warn",
+    // https://cn.eslint.org/docs/rules/prefer-destructuring 优先使用数组和对象解构
+    "react/destructuring-assignment": "warn",
+    "react/jsx-props-no-spreading": "warn",
+    "react/display-name": "off",
+    "react/prop-types": "off",
+
+    // React Native 相关
+    // 关闭 RN 必须使用 Text 组件包括纯文本的检查
+    "react-native/no-raw-text": "off",
+    // 未用到的 styles 报警告
+    "react-native/no-unused-styles": "warn",
+    // 禁用内联 styles
+    "react-native/no-inline-styles": "error",
+    // style 数组中单个元素时报错
+    "react-native/no-single-element-style-arrays": "error",
+    // Hooks 相关
+    // 违反 hooks 规范时报错 https://zh-hans.reactjs.org/docs/hooks-rules.html
+    "react-hooks/rules-of-hooks": "error",
+    // hooks 依赖项缺失时报警告
+    "react-hooks/exhaustive-deps": "warn",
+
+    // Prettier
+    "prettier/prettier": [
+      "warn",
+      {
+        "singleQuote": true,
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "insertPragma": false,
+        "jsxBracketSameLine": false,
+        "jsxSingleQuote": true,
+        "printWidth": 80,
+        "proseWrap": "preserve",
+        "requirePragma": false,
+        "semi": true,
+        "tabWidth": 2,
+        "useTabs": false,
+        "trailingComma": "es5"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "plugins": [
+        "react",
+        "react-native",
+        "react-hooks",
+        "@typescript-eslint",
+        "prettier",
+        "import"
+      ],
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "flowtype/no-types-missing-file-annotation": "off",
+        "import/named": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/display-name": "off",
+        "react/prop-types": "off",
+        "import/no-named-as-default": "warn",
+        "import/no-named-as-default-member": "warn",
+        // typescript 相关
+        // 未使用的表达式直接报错，允许短路？
+        "@typescript-eslint/no-unused-expressions": [
+          "error",
+          {"allowShortCircuit": true}
+        ],
+        // 解决"styles" was used before it was defined.
+        "@typescript-eslint/no-use-before-define": [
+          "error",
+          {"variables": false}
+        ],
+        // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            "vars": "all",
+            "args": "none",
+            "ignoreRestSiblings": false
+          }
+        ],
+        "@typescript-eslint/no-unsafe-argument": "off",
+        // 关闭对显式 any 的检查
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-empty-function": "off",
+        // https://github.com/typescript-eslint/typescript-eslint/blob/v5.3.1/packages/eslint-plugin/docs/rules/no-floating-promises.md
+        "@typescript-eslint/no-floating-promises": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off",
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/restrict-template-expressions": "off",
+        "@typescript-eslint/no-misused-promises": [
+          "error",
+          {
+            "checksVoidReturn": false
+          }
+        ],
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-shadow": "error",
+        "@typescript-eslint/no-inferrable-types": "off"
+      }
+    }
+  ]
+}

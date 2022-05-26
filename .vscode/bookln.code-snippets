@@ -1,0 +1,51 @@
+{
+  // Place your bookln-cdc workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and
+  // description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope
+  // is left empty or omitted, the snippet gets applied to all languages. The prefix is what is
+  // used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders.
+  // Placeholders with the same ids are connected.
+  // Example:
+  // "Print to console": {
+  // 	"scope": "javascript,typescript",
+  // 	"prefix": "log",
+  // 	"body": [
+  // 		"console.log('$1');",
+  // 		"$2"
+  // 	],
+  // 	"description": "Log output to console"
+  // }
+
+  // "scope": "javascript,typescript,javascriptreact,typescriptreact",
+
+  "创建埋点所需要的testID，用于直接设置Touchable的testID": {
+    "scope": "javascriptreact,typescriptreact",
+    "prefix": "testID",
+    "body": ["testID={'${CURRENT_SECONDS_UNIX}'}"],
+    "description": "创建埋点所需要的testID，如：testID={'1625559012'}"
+  },
+  "创建埋点所需要的testID，仅ID": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "testIDOnly",
+    "body": ["'${CURRENT_SECONDS_UNIX}'"],
+    "description": "创建埋点所需要的testID，如：'1625559012'"
+  },
+  "appContainer.getApi()": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "api",
+    "body": ["appContainer.getApi()"],
+    "description": "appContainer.getApi()"
+  },
+  "const { } = x": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "constFromObject",
+    "body": ["const { $2 } = $1;"],
+    "description": "方便的destructuring object"
+  },
+  "const [] = x": {
+    "scope": "javascript,typescript,javascriptreact,typescriptreact",
+    "prefix": "constFromArray",
+    "body": ["const { $2 } = $1;"],
+    "description": "方便的destructuring array"
+  }
+}

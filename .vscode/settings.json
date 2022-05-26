@@ -1,0 +1,81 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "cSpell.words": [
+    "Accesskey",
+    "actionsaction",
+    "aixin",
+    "alipay",
+    "bookln",
+    "borderless",
+    "Bugly",
+    "chivox",
+    "crashlytics",
+    "DTOs",
+    "ellipsize",
+    "IDFA",
+    "imgs",
+    "inversify",
+    "IOSIM",
+    "jaybo",
+    "Jobson",
+    "kangqiang",
+    "KEDADA",
+    "meizu",
+    "mjuserservices",
+    "Moji",
+    "navigatable",
+    "openinstall",
+    "Openinstalled",
+    "oppo",
+    "pintuan",
+    "Prehost",
+    "Prepub",
+    "Pushable",
+    "reactotron",
+    "realme",
+    "redmi",
+    "RNFS",
+    "Scrollable",
+    "Swiper",
+    "tapd",
+    "Tencent",
+    "textcontent",
+    "touxiang",
+    "TPNS",
+    "Trackinfo",
+    "Tuan",
+    "TXIM",
+    "Umeng",
+    "Unmount",
+    "wechat",
+    "Weibo",
+    "weiqiandao",
+    "xcworkspace",
+    "xiaomi",
+    "yangyangsdk",
+    "yunti"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": false
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ]
+  // "[javascript]": {
+  //   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  // },
+  // "[javascriptreact]": {
+  //   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  // },
+  // "[typescript]": {
+  //   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  // },
+  // "[typescriptreact]": {
+  //   "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  // }
+}

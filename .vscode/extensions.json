@@ -1,0 +1,21 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=827846
+  // for the documentation about the extensions.json format
+
+  "recommendations": [
+    "naumovs.color-highlight",
+    "coenraads.bracket-pair-colorizer",
+    "nhoizey.gremlins",
+    "streetsidesoftware.code-spell-checker",
+    "redhat.vscode-yaml",
+    "flowtype.flow-for-vscode",
+    "esbenp.prettier-vscode",
+    "Orta.vscode-jest",
+    "bierner.markdown-mermaid",
+    "bpruitt-goddard.mermaid-markdown-syntax-highlighting",
+    "wayou.vscode-todo-highlight",
+    "dbaeumer.vscode-eslint",
+    "knisterpeter.vscode-commitizen",
+    "rvest.vs-code-prettier-eslint"
+  ]
+}
