@@ -1,0 +1,87 @@
+/*
+ * @Author: zhangzhi
+ * @Date: 2017-07-01 11:38:45
+ * @Last Modified by: jaybo
+ * @Last Modified time: 2018-10-18 15:22:16
+ */
+
+export const colorFF7373 = '#FF7373';
+export const color2F3032 = '#2F3032';
+export const color91D1AD = '#91D1AD';
+export const colorF2FFF8 = '#F2FFF8';
+export const colorBEEBFF = '#BEEBFF';
+export const color28B7F8 = '#28B7F8';
+export const color10ABF2 = '#10ABF2';
+export const color34A3FF = '#34A3FF';
+export const color43C37B = '#43C37B';
+export const colorD3EBFF = '#D3EBFF';
+export const colorF6 = '#F6F6F6';
+export const colorF5A623 = '#F5A623';
+export const color24B22E = '#24B22E';
+export const colorEEF8FE = '#EEF8FE';
+export const colorC6E5FF = '#C6E5FF';
+export const colorFF6F48 = '#FF6F48';
+export const color3DA6FE = colors.primary;
+export const colorf6f7f8 = '#f6f7f8';
+export const colorffd5d5 = '#FFD5D5';
+export const colorB9e0ff = '#B9E0FF';
+export const colorEA = '#EAEAEA';
+export const color34 = '#343434';
+export const colorE8 = '#e8e8e8';
+export const colorA3D5FF = '#A3D5FF';
+export const colorE0 = '#E0E0E0';
+export const colorfe9d24 = '#fe9d24';
+export const color34b769 = '#34b769';
+export const colorF0 = '#F0F0F0';
+export const color00 = '#000000';
+export const color33A7FA = '#33A7FA';
+export const darkB0b1e30 = '#0b1e30';
+export const redCfa3b3b = '#fa3b3b';
+export const yellowFDFDEC = '#FDFDEC';
+export const orangeF98A4A = '#F98A4A';
+export const blackD222222 = '#222222';
+export const blackE666666 = '#666666';
+export const blackF999999 = '#999999';
+export const blackGcccccc = '#cccccc';
+export const blackHf2f5f7 = '#f2f5f7';
+export const blackIededed = '#ededed';
+export const blackJdddddd = '#dddddd';
+export const blackCCCCCC = '#cccccc';
+export const color111111 = '#111111';
+export const color01C293 = '#01C293';
+export const screenBg = '#F2F5F7';
+export const colorShadow = '#AA000000';
+export const colorA8acad = '#A8ACAD';
+export const colorEdf0f2 = '#edf0f2';
+export const color37 = '#373737';
+export const colorDD = '#dddddd';
+export const colorCC = '#cccccc';
+export const color66 = '#666666';
+export const color22 = '#222222';
+export const color33 = '#333333';
+export const color99 = '#999999';
+export const colorF2f5f7 = '#f2f5f7';
+export const color333333 = '#333333';
+export const colorFE9B3C = '#FE9B3C';
+export const colorFFF = '#fff';
+export const colorDA = '#DADADA';
+export const colorEE = '#eeeeee';
+export const color77 = '#777';
+export const color30D188 = '#30D188'; // 绿色
+export const imageBackgroundColor = '#f5f5f5';
+export const colorFEFCEC = '#FEFCEC';
+export const colorF76A24 = '#F76A24';
+export const colorED = '#ededed';
+export const colorFf9a04 = '#FF9A04';
+export const colorC0 = '#C0C0C0';
+export const colorB6 = '#B6B6B6';
+export const color47 = '#474747';
+export const color63 = '#636363';
+export const colorF9 = '#F9F9F9';
+export const color4dbaff = '#4dbaff';
+export const color00AEFF = '#00AEFF';
+export const color4BD7B1 = '#4BD7B1';
+export const colorff7878 = '#FF7878';
+export const colorD2 = '#D2D2D2';
+export const colorE8FAFF = '#e8faff';
+export const colorD8EFFF = '#D8EFFF';

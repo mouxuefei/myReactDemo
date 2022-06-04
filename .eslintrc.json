@@ -15,6 +15,7 @@
     "ecmaVersion": 2021,
     "sourceType": "module"
   },
+  "ignorePatterns": ["**/*.mjs"],
   "plugins": ["react", "react-native", "react-hooks", "prettier", "import"],
   "rules": {
     // 默认规则
@@ -22,7 +23,7 @@
     "lines-between-class-members": [
       "warn",
       "always",
-      {"exceptAfterSingleLine": true}
+      { "exceptAfterSingleLine": true }
     ],
     // 关闭悬垂下划线检查
     "no-underscore-dangle": "off",
@@ -45,9 +46,9 @@
     // https://eslint.org/docs/rules/object-shorthand#require-object-literal-shorthand-syntax-object-shorthand
     "object-shorthand": "warn",
     // https://eslint.org/docs/rules/no-plusplus#disallow-the-unary-operators--and----no-plusplus 禁用 ++ -- 自增，自减运算符
-    "no-plusplus": ["error", {"allowForLoopAfterthoughts": true}],
+    "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
     // https://eslint.org/docs/rules/no-else-return#disallow-return-before-else-no-else-return off，开启会影响代码可读性，为了省而省不是太好
-    "no-else-return": ["off", {"allowElseIf": true}],
+    "no-else-return": ["off", { "allowElseIf": true }],
     // https://eslint.org/docs/rules/padding-line-between-statements
     "padding-line-between-statements": "warn",
     // https://eslint.org/docs/rules/strict#require-or-disallow-strict-mode-directives-strict
@@ -69,8 +70,7 @@
     "import/no-extraneous-dependencies": "off",
     // 重复 import 报警告 https://cn.eslint.org/docs/rules/no-duplicate-imports
     "import/no-duplicates": "warn",
-    // TODO: jaybo - 先关闭，等代码稳定之后再开启
-    "import/no-default-export": "off",
+    "import/no-default-export": "error",
     // https://github.com/airbnb/javascript/issues/1365
     // https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
     // https://blog.neufund.org/why-we-have-banned-default-exports-and-you-should-do-the-same-d51fdc2cf2ad
@@ -82,14 +82,14 @@
     // jsx 文件后缀名只能为 js, jsx, tsx 否则报警告
     "react/jsx-filename-extension": [
       "warn",
-      {"extensions": [".js", ".jsx", ".tsx"]}
+      { "extensions": [".js", ".jsx", ".tsx"] }
     ],
     // 未使用的 state 报警告
     "react/no-unused-state": "warn",
     // jsx 中 props 必须要用 {} 包括起来， children 则忽略
     "react/jsx-curly-brace-presence": [
       "warn",
-      {"props": "always", "children": "ignore"}
+      { "props": "always", "children": "ignore" }
     ],
     "react/jsx-no-bind": [
       "warn",
@@ -153,6 +153,7 @@
     "react-native/no-inline-styles": "error",
     // style 数组中单个元素时报错
     "react-native/no-single-element-style-arrays": "error",
+
     // Hooks 相关
     // 违反 hooks 规范时报错 https://zh-hans.reactjs.org/docs/hooks-rules.html
     "react-hooks/rules-of-hooks": "error",
@@ -178,6 +179,20 @@
         "trailingComma": "es5"
       }
     ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "paths": [
+          // 和babel.config.js文件中的配置对应
+          "./src"
+        ]
+      }
+    }
   },
   "overrides": [
     {
@@ -214,12 +229,12 @@
         // 未使用的表达式直接报错，允许短路？
         "@typescript-eslint/no-unused-expressions": [
           "error",
-          {"allowShortCircuit": true}
+          { "allowShortCircuit": true }
         ],
         // 解决"styles" was used before it was defined.
         "@typescript-eslint/no-use-before-define": [
           "error",
-          {"variables": false}
+          { "variables": false }
         ],
         // https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-unused-vars.md
         "@typescript-eslint/no-unused-vars": [
