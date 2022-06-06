@@ -123,7 +123,7 @@ export class BTouchable extends PureComponent<Props> {
       if (onPress) {
         onPress(event);
 
-        this.debugTestID();
+        // this.debugTestID();
       }
     }
   };
