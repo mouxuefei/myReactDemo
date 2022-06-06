@@ -1,44 +1,71 @@
-import 'react-native-gesture-handler';
-import React, { useEffect, useState } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
-import { Provider } from 'react-redux';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen } from './screens/home/HomeScreen';
-import { PersonalInfoScreen } from './screens/personal/PersonalInfoScreen';
-import { SplashScreen } from './screens/splash/SplashScreen';
-import { defaultNavTheme } from './navigation/config/DefaultNavTheme';
-import { store } from './redux/store/configureStore';
+import { AppRegistry } from 'react-native';
+import { isTablet } from 'react-native-device-info';
+import Orientation from 'react-native-orientation';
+import { AppRootHelper } from './AppRootHelper';
+import { name as appName } from '../app.json';
+import { AppContainer } from './AppContainer';
+function selfSetJSExceptionHandler() {
+  // const originHandler = global.ErrorUtils.getGlobalHandler();
+  // const exceptionhandler = (error, isFatal) => {
+  //   const parsedStack = parseErrorStack(error);
+  //   const hotFixInfo = globalStore().getState().hotfixInfo;
+  //   const hotFixLocagePage: LocalPackage =
+  //     hotFixInfo.localPackgeResult.slice(-1);
+  //   let hotFitVersion = '非热更新包';
+  //   if (hotFixLocagePage?.resolve) {
+  //     hotFitVersion = `${hotFixLocagePage.appVersion}(${hotFixLocagePage.label})`;
+  //   }
+  //   const hotFixMode = hotFixInfo.mode;
+  // const { CrashlyticsRNHandler } = NativeModules;
+  // TODO jsError上报格式修改为之前的
+  // if (CrashlyticsRNHandler) {
+  //   CrashlyticsRNHandler.recordException({
+  //     message: error.message,
+  //     parsedStack,
+  //     isFatal,
+  //     hotFixMode,
+  //     hotFitVersion,
+  //   });
+  // }
+  // const params = {
+  //   message: error.message,
+  //   parsedStack,
+  //   isFatal,
+  //   hotFixMode,
+  //   hotFitVersion,
+  // };
+  // Bugly.recordException(params);
+  // originHandler(error, isFatal);
+  // };
+  // setJSExceptionHandler(exceptionhandler, true);
+}
 
-const Stack = createNativeStackNavigator();
-const Tab = createBottomTabNavigator();
+function lockOrientation() {
+  if (isTablet()) {
+    Orientation.unlockAllOrientations();
+    return;
+  }
+  Orientation.lockToPortrait();
+}
 
-export const App = () => {
-  const [isLoadingSplash, setIsLoadingSplash] = useState<boolean>(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoadingSplash(false);
-    }, 2000);
-  });
+/**
+ * 启动前的准备工作
+ */
+function prepare() {
+  selfSetJSExceptionHandler();
+}
 
-  return isLoadingSplash ? (
-    <SplashScreen />
-  ) : (
-    <Provider store={store}>
-      <NavigationContainer theme={defaultNavTheme}>
-        <Stack.Navigator initialRouteName={'home'}>
-          <Tab.Screen name={'home'} component={HomeScreen}></Tab.Screen>
-        </Stack.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
-};
+function launch() {
+  AppRegistry.registerComponent(appName, () => AppContainer);
+}
 
-const HomeTabs = () => {
-  return (
-    <Tab.Navigator>
-      <Stack.Screen name={'Home'} component={HomeScreen} />
-      <Stack.Screen name={'personalInfo'} component={PersonalInfoScreen} />
-    </Tab.Navigator>
-  );
-};
+function setupNavigation() {
+  lockOrientation();
+  launch();
+}
+
+function start() {
+  prepare();
+  setupNavigation();
+}
+export { start };
