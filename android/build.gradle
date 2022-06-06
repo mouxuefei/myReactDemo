@@ -8,6 +8,7 @@ buildscript {
         targetSdkVersion = 29
         ndkVersion = "20.1.5948944"
         RNNKotlinVersion = '1.4.21'
+        kotlinVersion="1.4.21"
     }
     repositories {
 //        google()
@@ -45,5 +46,14 @@ allprojects {
             url("$rootDir/../node_modules/jsc-android/dist")
         }
         maven { url 'https://www.jitpack.io' }
+    }
+}
+
+
+allprojects {
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions {
+            jvmTarget = "1.8"
+        }
     }
 }
