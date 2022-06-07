@@ -1,7 +1,4 @@
-import { useNavigation } from '@react-navigation/native';
-import { AppContainer } from './AppContainer';
-import { AppRegistry } from 'react-native';
-
+import { ScreenConstants } from './screens/ScreenConstants';
 import {
   initAfterEnteringHome,
   initAfterEnteringHomeWithDelay,
@@ -38,7 +35,7 @@ export class AppRootHelper {
     return new Promise((resolve, _reject) => {
       navigationRef.reset({
         index: 1,
-        routes: [{ name: 'userAgreement' }],
+        routes: [{ name: ScreenConstants.UserAgreement }],
       });
     });
   };
@@ -50,7 +47,7 @@ export class AppRootHelper {
     await initThirdSDKBeforeEnteringHome();
     navigationRef.reset({
       index: 1,
-      routes: [{ name: 'HomeTabs' }],
+      routes: [{ name: ScreenConstants.HomeTabs }],
     });
     // 业务层相关初始化，比如检查更新
     await initAfterEnteringHome();

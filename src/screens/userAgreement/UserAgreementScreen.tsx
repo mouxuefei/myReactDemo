@@ -6,15 +6,17 @@ import {
 import React, { useCallback } from 'react';
 import { Text, View, Alert } from 'react-native';
 import { BTouchable } from '../../components/BTouchable';
+import { ScreenConstants } from '../ScreenConstants';
 interface Props {}
 export const UserAgreementScreen = (props: Props) => {
   const navigation = useNavigation();
   const onPress = useCallback(() => {
     navigation.reset({
       index: 1,
-      routes: [{ name: 'HomeTabs' }],
+      routes: [{ name: ScreenConstants.HomeTabs }],
     });
   }, [navigation]);
+
   return (
     <View>
       <Text style={{ color: 'black' }}>
