@@ -1,5 +1,6 @@
 // @ts-ignore
 import RNFetchBlob from 'rn-fetch-blob';
+import cleaner from 'deep-cleaner';
 import { serverDomain } from './config/serverDomain';
 import { currentEnvironment } from './config/serverEnvironment';
 import { serverInterceptor } from './config/serverInterceptor';
@@ -8,73 +9,124 @@ import { headerFieldValueDictionary } from './HeaderFieldValueDictionary';
 import { netUtil } from './NetUtil';
 
 class HttpServer {
-  public async promiseFetch<T>(fetchInfo: FetchInfo): Promise<BaseResponse<T>> {
+  public promiseFetch<T>(fetchInfo: FetchInfo): Promise<BaseResponse<T>> {
+    const { timeout } = fetchInfo;
+    return this.promiseFetchWithTimeout<T>(
+      this.promiseFetchNet(fetchInfo),
+      timeout
+    );
+  }
+
+  /**
+   * 解决fetch没有timeout的问题
+   */
+  private async promiseFetchWithTimeout<T>(
+    fetchPromise: any,
+    timeout: number
+  ): Promise<BaseResponse<T>> {
+    let abort: (() => void) | null = null;
+    const abortPromise = new Promise((resolve, reject) => {
+      abort = () => {
+        this.resolveError(resolve, -1, '请求超时');
+      };
+    });
+    const racePromise = Promise.race([fetchPromise, abortPromise]);
+    setTimeout(() => {
+      abort?.();
+    }, timeout);
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+    return racePromise;
+  }
+
+  public async promiseFetchNet<T>(
+    fetchInfo: FetchInfo
+  ): Promise<BaseResponse<T>> {
     return new Promise((resolve, reject) => {
-      const { data, method, header, timeout } = fetchInfo;
+      const { data, method, header } = fetchInfo;
       const urlString = this.urlWithBaseUrl(fetchInfo);
       let requestUrl = urlString;
-      // 配置请求头
+      // 处理请求头
       if (header) {
         Object.assign(headerFieldValueDictionary, header);
       }
-      // 参数
+      // 处理参数
       let requestParams = null;
-      if (data && Array.isArray(data)) {
-        requestParams = data;
-      } else {
-        if (data) {
-          if (method === 'GET') {
-            requestUrl = this.getRequestUrl(requestUrl, data);
-          } else {
-            requestParams = JSON.stringify(data);
-          }
+      const cleanData = data ? cleaner(data) : null;
+      if (cleanData) {
+        if (method === 'GET') {
+          requestUrl = this.getRequestUrl(requestUrl, cleanData);
+        } else {
+          requestParams = cleanData;
         }
       }
-      RNFetchBlob.config({
-        trusty: true,
-        timeout,
-      })
-        .fetch(method, requestUrl, headerFieldValueDictionary, requestParams)
-        .then((resp: any) => {
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-          return resp.json();
+
+      const requestParam = {
+        method,
+        headers: headerFieldValueDictionary,
+        timeout: 3,
+      };
+      const postParam = {
+        ...requestParam,
+        body: this.transformObjToFormData(requestParams),
+      };
+      const request = method === 'GET' ? requestParam : postParam;
+      fetch(requestUrl, request)
+        .then((response: any) => {
+          if (response.ok) {
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+            return response.json();
+          } else {
+            this.resolveError(resolve, response.status, response.statusText);
+          }
         })
         .then((json: any) => {
           const currentInterceptor = serverInterceptor[currentEnvironment];
-          if (currentInterceptor) {
-            if (currentInterceptor.interceptorResponse) {
-              const { isIntercept, error: newError } =
-                currentInterceptor.interceptorResponse(json, fetchInfo);
-              if (isIntercept) {
-                resolve({
-                  success: false,
-                  data: undefined,
-                  error: newError,
-                });
-                return;
-              }
+          if (!currentInterceptor) {
+            this.resolveSuccuss(resolve, json);
+            return;
+          }
+          if (currentInterceptor.interceptorResponse) {
+            const { isIntercept, msg } = currentInterceptor.interceptorResponse(
+              json,
+              fetchInfo
+            );
+            if (isIntercept) {
+              this.resolveError(resolve, -1, msg);
+              return;
             }
-
-            if (currentInterceptor.handlerResponseData) {
-              const resultData = currentInterceptor.handlerResponseData(json);
-              resolve(resultData);
-            } else {
-              resolve(json);
-            }
+          }
+          if (currentInterceptor.handlerResponseData) {
+            const resultData = currentInterceptor.handlerResponseData(json);
+            this.resolveSuccuss(resolve, resultData);
           } else {
-            resolve(json);
+            this.resolveSuccuss(resolve, json);
           }
         })
         .catch((newError: any) => {
-          resolve({
-            success: false,
-            data: undefined,
-            error: { code: -1, msg: newError },
-          });
+          this.resolveError(resolve, -1, newError);
         });
     });
   }
 
+  /**
+   *
+   * @param params 转换参数
+   */
+  private transformObjToFormData = (params: any) => {
+    const formData = new FormData();
+    if (formData) {
+      for (const key in params) {
+        if (Object.prototype.hasOwnProperty.call(params, key)) {
+          formData.append(key, params[key]);
+        }
+      }
+    }
+    return formData;
+  };
+
+  /**
+   * 图片上传使用RNFetchBlob，其他不好使
+   */
   public async promiseUploadFile(info: FetchInfo): Promise<any> {
     const urlString = this.urlWithBaseUrl(info);
     const fetchObject = [
@@ -101,14 +153,25 @@ class HttpServer {
           resolve(responseJson);
         })
         .catch((newError: any) => {
-          resolve({
-            success: false,
-            data: undefined,
-            error: { code: -1, msg: newError },
-          });
+          this.resolveError(resolve, -1, newError);
         });
     });
   }
+
+  private resolveError = (resolve: any, code: number, newError: string) => {
+    resolve({
+      success: false,
+      data: undefined,
+      error: { code, msg: newError },
+    });
+  };
+
+  private resolveSuccuss = (resolve: any, data: any) => {
+    resolve({
+      success: true,
+      ...data,
+    });
+  };
 
   private getRequestUrl = (requestUrl: string, apiParams: any) => {
     if (netUtil.isEmptyObject(apiParams)) {

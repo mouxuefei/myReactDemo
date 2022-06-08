@@ -22,6 +22,8 @@ export const HomeScreen = (props: Props) => {
     const articleInfo = HomeFI.article();
     const response: BaseResponse<HomeDTO> =
       await httpServer.promiseFetch<HomeDTO>(articleInfo);
+    console.log('response==', response);
+
     if (response.success) {
       setTest(JSON.stringify(response));
     } else {
