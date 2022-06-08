@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { defaultNavTheme } from './navigation/DefaultNavTheme';
-import { store } from './redux/store/configureStore';
+import { store } from './redux/store/ConfigureStore';
 import { navigationRef } from './navigation/RootNavigation';
 import { ProviderWithErrorBoundary } from './ProviderWithErrorBoundary';
 import { defaultNavOptionsConfig } from './navigation/DefaultNavOptionsConfig';
