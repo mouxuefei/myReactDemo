@@ -1,4 +1,4 @@
-import { getStore } from './ConfigureStore';
+import { getStore } from './Store';
 
 /**
  * 获取全局redux store。

@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { defaultNavTheme } from './navigation/DefaultNavTheme';
-import { store } from './redux/store/ConfigureStore';
+import { store } from './redux/store/Store';
 import { navigationRef } from './navigation/RootNavigation';
 import { ProviderWithErrorBoundary } from './ProviderWithErrorBoundary';
 import { defaultNavOptionsConfig } from './navigation/DefaultNavOptionsConfig';
@@ -17,7 +17,13 @@ import { ScreenConstants } from './screens/ScreenConstants';
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export const AppContainer = () => {
+interface Props {
+  data1?: string;
+  data2?: string;
+}
+export const AppContainer = (props: Props) => {
+  console.log('bundle====', props?.data1);
+
   return (
     <ProviderWithErrorBoundary store={store}>
       <NavigationContainer theme={defaultNavTheme} ref={navigationRef}>

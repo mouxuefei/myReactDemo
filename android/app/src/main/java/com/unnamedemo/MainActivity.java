@@ -1,35 +1,31 @@
 package com.unnamedemo;
+
+
+import android.content.Intent;
 import android.os.Bundle;
-import com.facebook.react.ReactActivity;
- import com.facebook.react.ReactActivityDelegate;
-import com.facebook.react.ReactRootView;
-import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends ReactActivity {
+/**
+ * @version V1.0 <描述当前版本功能>
+ * @FileName: MainActivity.java
+ * @author: villa_mou
+ * @date: 06-13:33
+ * @desc
+ */
+public class MainActivity extends AppCompatActivity {
 
-  @Override
-protected void onCreate(Bundle savedInstanceState) {
-  super.onCreate(null);
-}
-  /**
-   * Returns the name of the main component registered from JavaScript. This is used to schedule
-   * rendering of the component.
-   */
-  @Override
-  protected String getMainComponentName() {
-    return "unNameDemo";
-  }
-
-  @Override
-  protected ReactActivityDelegate createReactActivityDelegate() {
-     return new ReactActivityDelegate(this, getMainComponentName()) {
-      @Override
-  protected ReactRootView createRootView() {
-     return new RNGestureHandlerEnabledRootView(MainActivity.this);
-     }
-   };
-  }
-  
- 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+        findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,RNPageActivity.class));
+            }
+        });
+    }
 }
