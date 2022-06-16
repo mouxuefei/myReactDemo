@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+}
+android {
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //支持@Parcelize来实现Parcelable序列化
+    androidExtensions {
+        experimental = true
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    implementation rootProject.ext.dependencies["kotlin"]
+    api project(':lib_basemvvm')
+    api(rootProject.ext.dependencies["cardview"])
+    api rootProject.ext.dependencies["refresh-layout"]
+    api rootProject.ext.dependencies["refresh-header"]
+    api rootProject.ext.dependencies["FlycoTabLayout"]
+    api rootProject.ext.dependencies["immersionbar"]
+    api rootProject.ext.dependencies["PickerView"]
+    api(rootProject.ext.dependencies["PictureSelector"]) {
+        exclude module: 'glide'
+    }
+    api(rootProject.ext.dependencies["lottie"]) {
+        exclude module: 'support'
+    }
+    kapt rootProject.ext.dependencies["lifecycle-compiler"]
+    implementation rootProject.ext.dependencies["lifecycle-viewmodel-ktx"]
+    implementation rootProject.ext.dependencies["lifecycle-livedata-ktx"]
+    api(rootProject.ext.dependencies["background"]) {
+        exclude module: 'support'
+    }
+    api rootProject.ext.dependencies["BaseRecyclerViewAdapterHelper"]
+}

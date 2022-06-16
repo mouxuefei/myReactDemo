@@ -1,4 +1,4 @@
-package com.unnamedemo;
+package com.unnamedemo.mvvm.view;
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -1,4 +1,4 @@
-package com.unnamedemo;
+package com.unnamedemo.mvvm.view;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,6 +11,7 @@ import com.facebook.react.common.LifecycleState;
 import com.facebook.react.devsupport.DoubleTapReloadRecognizer;
 import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
+import com.unnamedemo.BuildConfig;
 
 import java.util.List;
 
