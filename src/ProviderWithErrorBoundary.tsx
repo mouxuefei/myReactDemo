@@ -1,13 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { ErrorBoundary, FallbackProps } from 'react-error-boundary';
-import {
-  Image,
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Text,
-} from 'react-native';
+import { SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native';
 import { Provider } from 'react-redux';
 
 const FallBackComponent = (props: FallbackProps) => {

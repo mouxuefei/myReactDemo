@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { PureComponent } from 'react';
 import {
   GestureResponderEvent,
@@ -13,15 +12,7 @@ import {
   ViewStyle,
 } from 'react-native';
 
-interface Props extends OptionalProps, TouchableWithoutFeedbackProps {
-  /**
-   * 必填，用于埋点，以后用于自动化测试。
-   * 格式：时间戳，精确到毫秒，如：1625545223026
-   *
-   * 可以使用项目中的代码片段 testID 自动生成
-   */
-  testID?: string;
-}
+interface Props extends OptionalProps, TouchableWithoutFeedbackProps {}
 
 interface OptionalProps {
   borderless?: boolean;
@@ -52,7 +43,7 @@ export class BTouchable extends PureComponent<Props> {
   lastTimeStamp = 0;
 
   render() {
-    const { style, disabled, isLoading, borderless } = this.props;
+    const { style, borderless } = this.props;
     const borderlessStyle: StyleProp<ViewStyle> =
       borderless === true && Platform.OS === 'android'
         ? { overflow: 'visible' }
@@ -125,16 +116,6 @@ export class BTouchable extends PureComponent<Props> {
 
         // this.debugTestID();
       }
-    }
-  };
-
-  private debugTestID = () => {
-    if (__DEV__ === false) {
-      return;
-    }
-    const { testID } = this.props;
-    if (testID == null) {
-      console.warn('🔴🔴🔴🔴🔴 BTouchable.testID不能为空');
     }
   };
 

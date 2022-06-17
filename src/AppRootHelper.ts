@@ -17,19 +17,18 @@ export class AppRootHelper {
     return AppRootHelper.instance;
   }
 
-  goToInitialScreen = async (): Promise<void> => {
+  public goToInitialScreen = async (): Promise<void> => {
     const didShowUserAgreement: boolean = false;
     // 是否同意用户协议
     if (didShowUserAgreement === false) {
       await this.setUserAgreementScreenAsRoot();
     } else {
-      AppRootHelper.shared().goToTabs();
+      AppRootHelper.shared().goToBottomTabs();
     }
   };
 
   /**
-   *
-   * @returns 跳转用户协议
+   *  跳转用户协议页面
    */
   private setUserAgreementScreenAsRoot = async (): Promise<void> => {
     return new Promise((resolve, _reject) => {
@@ -40,7 +39,10 @@ export class AppRootHelper {
     });
   };
 
-  goToTabs = async () => {
+  /**
+   * 跳转主页面
+   */
+  goToBottomTabs = async () => {
     // 去主界面
     await initBeforeEnteringHome();
     // 初始化三方SDK

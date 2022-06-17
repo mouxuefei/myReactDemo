@@ -1,4 +1,4 @@
-import { defaultFetchInfo } from '../../../api/test2';
+import { defaultFetchInfo } from '../../../api';
 
 export class HomeFI {
   static article() {
