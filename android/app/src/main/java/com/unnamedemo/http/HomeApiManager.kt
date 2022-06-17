@@ -13,7 +13,7 @@ import com.fortunes.commonsdk.network.NetMgr
  * @desc
  */
 object HomeApiManager {
-    val apiService by lazy {
+    val apiService: ApiService by lazy {
         NetMgr.getRetrofit(
                 BaseUrlConstants.getBaseUrl(),
                 BaseNetProvider(BaseApplication.instance())

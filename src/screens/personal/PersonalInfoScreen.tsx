@@ -8,6 +8,8 @@ import React, { useCallback } from 'react';
 import { Text, View, Alert } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import { BTouchable } from '../../components/BTouchable';
+import { navigationRef } from '../../navigation/RootNavigation';
+import { Colors } from '../../styles/colors';
 import { ScreenConstants } from '../ScreenConstants';
 interface Props {}
 export const PersonalInfoScreen = (props: Props) => {
@@ -28,11 +30,21 @@ export const PersonalInfoScreen = (props: Props) => {
   const navigation = useNavigation();
 
   const onPress = useCallback(() => {
-    navigation.navigate(ScreenConstants.Detail);
-  }, [navigation]);
+    navigation.push(ScreenConstants.Detail);
+    // navigationRef.reset({
+    //   routes: [
+    //     { name: ScreenConstants.HomeTabs },
+    //     { name: ScreenConstants.Detail },
+    //   ],
+    //   index: 0,
+    // });
+  }, []);
   return (
-    <View>
-      <BTouchable style={{ height: 60 }} onPress={onPress}>
+    <View style={{ flex: 1, backgroundColor: 'green' }}>
+      <BTouchable
+        style={{ height: 60, backgroundColor: Colors.color2F3032 }}
+        onPress={onPress}
+      >
         <Text>HomeScreen</Text>
       </BTouchable>
       <View style={{ marginLeft: 20 }}>

@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { StyleSheet, Image, View, StatusBar } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { AppRootHelper } from '../../AppRootHelper';
 interface Props {}
-export const SplashScreen = (props: Props) => {
+
+export const SplashScreen: FC<Props> = (props: Props) => {
   useEffect(() => {
     setTimeout(() => {
       AppRootHelper.shared().goToInitialScreen();

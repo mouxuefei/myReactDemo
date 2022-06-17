@@ -37,13 +37,24 @@ export const HomeScreen = (props: Props) => {
     // navigation.navigate(ScreenConstants.Upgrade);
   }, [fetchData]);
 
+  const onPressButton = useCallback(() => {
+    navigation.navigate(ScreenConstants.Upgrade);
+  }, [navigation]);
+
   return (
     <View style={{ flex: 1 }}>
       <BTouchable
         style={{ height: 60, backgroundColor: 'green' }}
         onPress={onPress}
       >
-        <Text>HomeScreen</Text>
+        <Text>button1</Text>
+      </BTouchable>
+
+      <BTouchable
+        style={{ height: 60, backgroundColor: 'red' }}
+        onPress={onPressButton}
+      >
+        <Text>button2</Text>
       </BTouchable>
       <Text>{test}</Text>
     </View>

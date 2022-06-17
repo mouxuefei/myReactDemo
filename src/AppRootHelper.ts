@@ -34,7 +34,7 @@ export class AppRootHelper {
   private setUserAgreementScreenAsRoot = async (): Promise<void> => {
     return new Promise((resolve, _reject) => {
       navigationRef.reset({
-        index: 1,
+        index: 0,
         routes: [{ name: ScreenConstants.UserAgreement }],
       });
     });
@@ -46,7 +46,7 @@ export class AppRootHelper {
     // 初始化三方SDK
     await initThirdSDKBeforeEnteringHome();
     navigationRef.reset({
-      index: 1,
+      index: 0,
       routes: [{ name: ScreenConstants.HomeTabs }],
     });
     // 业务层相关初始化，比如检查更新

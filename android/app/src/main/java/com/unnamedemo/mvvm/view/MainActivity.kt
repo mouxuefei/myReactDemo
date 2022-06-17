@@ -19,8 +19,8 @@ class MainActivity : BaseActivity<MainViewModel>() {
                     .bindDialogOrLifeCycle(this@MainActivity)
                     .dealResult(this@MainActivity)
             }
-
         }
+
         btn_login.setOnClickListener {
             startActivity(Intent(this@MainActivity, RNPageActivity::class.java))
         }

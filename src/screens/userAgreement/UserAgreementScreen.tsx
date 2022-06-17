@@ -3,12 +3,14 @@ import {
   useIsFocused,
   useNavigation,
 } from '@react-navigation/native';
-import React, { useCallback } from 'react';
+import React, { FC, useCallback } from 'react';
 import { Text, View, Alert } from 'react-native';
 import { BTouchable } from '../../components/BTouchable';
 import { ScreenConstants } from '../ScreenConstants';
+
 interface Props {}
-export const UserAgreementScreen = (props: Props) => {
+
+export const UserAgreementScreen: FC<Props> = (props: Props) => {
   const navigation = useNavigation();
   const onPress = useCallback(() => {
     navigation.reset({

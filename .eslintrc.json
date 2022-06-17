@@ -252,6 +252,7 @@
         // https://github.com/typescript-eslint/typescript-eslint/blob/v5.3.1/packages/eslint-plugin/docs/rules/no-floating-promises.md
         "@typescript-eslint/no-floating-promises": "off",
         "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-empty-interface": "off",
         "@typescript-eslint/no-unsafe-member-access": "off",
         "@typescript-eslint/no-unsafe-assignment": "off",
         "@typescript-eslint/restrict-template-expressions": "off",

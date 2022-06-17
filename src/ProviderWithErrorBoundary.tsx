@@ -17,7 +17,6 @@ const FallBackComponent = (props: FallbackProps) => {
         contentContainerStyle={styles.scrollView}
         contentInsetAdjustmentBehavior={'always'}
       >
-        {/* <Image source={require('./images/blank_404.png')} /> */}
         <Text style={styles.title}>{'页面加载出错啦'}</Text>
       </ScrollView>
     </SafeAreaView>
@@ -73,11 +72,8 @@ export const ProviderWithErrorBoundary = ({
     []
   );
 
-  const { componentId } = children?.props || {};
-
   return (
     <Provider store={store}>
-      {/* @ts-ignore */}
       <ErrorBoundary
         FallbackComponent={FallBackComponent}
         onError={handleError}

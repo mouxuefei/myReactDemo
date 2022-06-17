@@ -48,14 +48,12 @@ public class RNPageActivity extends AppCompatActivity implements DefaultHardware
 
     @Override
     public void invokeDefaultOnBackPressed() {
-
         super.onBackPressed();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostPause(this);
         }
@@ -64,7 +62,6 @@ public class RNPageActivity extends AppCompatActivity implements DefaultHardware
     @Override
     protected void onResume() {
         super.onResume();
-
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostResume(this, this);
         }
@@ -82,7 +79,6 @@ public class RNPageActivity extends AppCompatActivity implements DefaultHardware
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
         if (mReactInstanceManager != null) {
             mReactInstanceManager.onHostDestroy(this);
         }

@@ -1,7 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, RouteProp } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { Image, View } from 'react-native';
 import { defaultNavTheme } from './navigation/DefaultNavTheme';
 import { store } from './redux/store/Store';
 import { navigationRef } from './navigation/RootNavigation';
@@ -34,9 +35,7 @@ export const AppContainer = (props: Props) => {
           {/*  screen */}
           <Stack.Group
             navigationKey={'screen'}
-            screenOptions={{
-              animation: 'fade',
-            }}
+            screenOptions={{ animation: 'fade' }}
           >
             {/*  homeTabs */}
             <Stack.Screen
@@ -44,7 +43,7 @@ export const AppContainer = (props: Props) => {
               options={{ headerShown: false }}
             >
               {() => (
-                <Tab.Navigator screenOptions={{ headerShown: false }}>
+                <Tab.Navigator screenOptions={tabNavigatorOption}>
                   {bottomTabPages.map(item => {
                     return registerScreen(item, true);
                   })}
@@ -85,3 +84,44 @@ const registerScreen = (routerConfig: RouterConfig, isTab?: boolean) => {
     />
   );
 };
+
+const tabNavigatorOption = (param: { route: RouteProp<any> }) => ({
+  tabBarIcon: (param2: { focused: boolean; color: string; size: number }) => {
+    let iconName;
+    if (param.route.name === ScreenConstants.Detail) {
+      return (
+        <View
+          style={{
+            width: 60,
+            height: 60,
+            backgroundColor: 'white',
+            borderRadius: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Image
+            style={{
+              width: 30,
+              height: 30,
+            }}
+            source={require('./images/home/home.png')}
+          />
+        </View>
+      );
+    }
+    return (
+      <Image
+        style={{
+          width: 20,
+          height: 20,
+        }}
+        source={require('./images/home/home.png')}
+      />
+    );
+  },
+  tabBarActiveTintColor: 'tomato',
+  tabBarInactiveTintColor: 'gray',
+  headerShown: false,
+  tabBarItemStyle: { marginBottom: 3 },
+});

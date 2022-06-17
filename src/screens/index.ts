@@ -5,6 +5,8 @@ import { UpgradeModal } from './modals/upgrade/UpgradeModal';
 import { PersonalInfoScreen } from './personal/PersonalInfoScreen';
 import { SplashScreen } from './splash/SplashScreen';
 import { UserAgreementScreen } from './userAgreement/UserAgreementScreen';
+import { DetailScreen2 } from './detail/DetailScreen2';
+import { DetailScreen3 } from './detail/DetailScreen3';
 export interface RouterConfig {
   route: string; // 页面路由
   page: React.ComponentType<any>; // 页面
@@ -20,12 +22,20 @@ export const stackPages: Array<RouterConfig> = [
     page: SplashScreen,
   },
   {
+    route: ScreenConstants.UserAgreement,
+    page: UserAgreementScreen,
+  },
+  {
     route: ScreenConstants.Detail,
     page: DetailScreen,
   },
   {
-    route: ScreenConstants.UserAgreement,
-    page: UserAgreementScreen,
+    route: ScreenConstants.Detail2,
+    page: DetailScreen2,
+  },
+  {
+    route: ScreenConstants.Detail3,
+    page: DetailScreen3,
   },
 ];
 /**
@@ -35,6 +45,10 @@ export const bottomTabPages: Array<RouterConfig> = [
   {
     route: ScreenConstants.Home,
     page: HomeScreen,
+  },
+  {
+    route: ScreenConstants.Detail,
+    page: DetailScreen,
   },
   {
     route: ScreenConstants.Personal,
