@@ -27,7 +27,7 @@ export const AppContainer = (props: Props) => {
 
   return (
     <ProviderWithErrorBoundary store={store}>
-      <NavigationContainer theme={defaultNavTheme} ref={navigationRef}>
+      <NavigationContainer ref={navigationRef}>
         <Stack.Navigator
           initialRouteName={ScreenConstants.Splash}
           screenOptions={defaultNavOptionsConfig}
@@ -54,6 +54,7 @@ export const AppContainer = (props: Props) => {
               return registerScreen(item);
             })}
           </Stack.Group>
+
           {/*  modal */}
           <Stack.Group
             navigationKey={'modal'}

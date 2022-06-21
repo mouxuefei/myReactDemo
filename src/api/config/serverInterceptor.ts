@@ -7,7 +7,7 @@ export const serverInterceptor = {
       return { isIntercept: false, msg: '成功了' };
     },
     handlerResponseData: (json: any): any => {
-      // console.log('NetWork----->', JSON.stringify(json));
+      console.log('NetWork----->', JSON.stringify(json));
       return json;
     },
   },

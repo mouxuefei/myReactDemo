@@ -5,9 +5,10 @@ import {
   useNavigation,
 } from '@react-navigation/native';
 import React, { useCallback } from 'react';
-import { Text, View, Alert } from 'react-native';
+import { Text, View, Alert, StatusBar } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import { BTouchable } from '../../components/BTouchable';
+import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
 import { navigationRef } from '../../navigation/RootNavigation';
 import { Colors } from '../../styles/colors';
 import { ScreenConstants } from '../ScreenConstants';
@@ -41,6 +42,7 @@ export const PersonalInfoScreen = (props: Props) => {
   }, []);
   return (
     <View style={{ flex: 1, backgroundColor: 'green' }}>
+      {/* <FocusAwareStatusBar barStyle={'dark-content'} /> */}
       <BTouchable
         style={{ height: 60, backgroundColor: Colors.color2F3032 }}
         onPress={onPress}

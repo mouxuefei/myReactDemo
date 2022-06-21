@@ -1,16 +1,18 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useEffect } from 'react';
-import { Alert, Text, View } from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { FC, useCallback, useEffect } from 'react';
+import { Alert, StatusBar, Text, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { BTouchable } from '../../components/BTouchable';
+import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
 import { updateDidCheckIn } from '../../redux/modules/actions';
 import { login } from '../../redux/modules/userInfo';
 import { Colors } from '../../styles/colors';
 import { RootStackScreenProps } from '../global';
 import { ScreenConstants } from '../ScreenConstants';
 interface Props {}
-export const DetailScreen = (props: Props) => {
+export const DetailScreen: FC<Props> = (props: Props) => {
   const dispatch = useDispatch();
+
   const navigation = useNavigation<RootStackScreenProps<any>>();
   useEffect(
     () =>
@@ -46,6 +48,7 @@ export const DetailScreen = (props: Props) => {
 
   return (
     <View style={{ flex: 1, backgroundColor: 'gray' }}>
+      {/* <FocusAwareStatusBar barStyle={'light-content'} /> */}
       <BTouchable
         style={{ height: 60, backgroundColor: Colors.color2F3032 }}
         onPress={onPress}

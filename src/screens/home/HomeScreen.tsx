@@ -1,10 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useCallback, useState } from 'react';
-import { Text, ToastAndroid, View } from 'react-native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { StatusBar, Text, ToastAndroid, View } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { httpServer } from '../../api';
 import { BaseResponse } from '../../api/FetchInfo';
 import { BTouchable } from '../../components/BTouchable';
+import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
 import { navigate } from '../../navigation/RootNavigation';
 import { updateDidCheckIn } from '../../redux/modules/actions';
 import { login } from '../../redux/modules/userInfo';
@@ -17,6 +18,12 @@ export const HomeScreen = (props: Props) => {
   const [test, setTest] = useState<string>('');
   const dispatch = useDispatch();
   const navigation = useNavigation();
+
+  useEffect(() => {
+    console.log('aaa');
+
+    StatusBar.setBarStyle('light-content');
+  });
 
   const fetchData = useCallback(async () => {
     const articleInfo = HomeFI.article();
@@ -43,6 +50,7 @@ export const HomeScreen = (props: Props) => {
 
   return (
     <View style={{ flex: 1 }}>
+      {/* <FocusAwareStatusBar barStyle={'dark-content'} /> */}
       <BTouchable
         style={{ height: 60, backgroundColor: 'green' }}
         onPress={onPress}

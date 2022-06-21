@@ -42,7 +42,7 @@ class HttpServer {
     fetchInfo: FetchInfo
   ): Promise<BaseResponse<T>> {
     return new Promise((resolve, reject) => {
-      const { data, method, header } = fetchInfo;
+      const { data, method, header, timeout } = fetchInfo;
       const urlString = this.urlWithBaseUrl(fetchInfo);
       let requestUrl = urlString;
       // 处理请求头
@@ -63,7 +63,7 @@ class HttpServer {
       const requestParam = {
         method,
         headers: headerFieldValueDictionary,
-        timeout: 3,
+        timeout,
       };
       const postParam = {
         ...requestParam,
