@@ -25,6 +25,20 @@ export const HomeScreen = (props: Props) => {
     StatusBar.setBarStyle('light-content');
   });
 
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('tabPress', e => {
+      console.log('e====', e);
+      // 根据逻辑阻止切换
+      e.preventDefault();
+
+      // alert('Default behavior prevented');
+      // Do something manually
+      // ...
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
   const fetchData = useCallback(async () => {
     const articleInfo = HomeFI.article();
     const response: BaseResponse<HomeDTO> =
