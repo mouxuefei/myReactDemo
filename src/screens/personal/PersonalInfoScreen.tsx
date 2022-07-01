@@ -4,14 +4,18 @@ import {
   useIsFocused,
   useNavigation,
 } from '@react-navigation/native';
-import React, { useCallback } from 'react';
-import { Text, View, Alert, StatusBar } from 'react-native';
+import React, { useCallback, useRef, useState } from 'react';
+import { Text, View, Alert, StatusBar, Animated } from 'react-native';
 import { Shadow } from 'react-native-shadow-2';
 import { BTouchable } from '../../components/BTouchable';
 import { FocusAwareStatusBar } from '../../components/FocusAwareStatusBar';
+import { NestedScrollView } from '../../components/NestedScrollView';
+import { YTNestedScrollView } from '../../components/YTNestedScrollView';
 import { navigationRef } from '../../navigation/RootNavigation';
 import { Colors } from '../../styles/colors';
 import { ScreenConstants } from '../ScreenConstants';
+import { TestView } from './TestView';
+
 interface Props {}
 export const PersonalInfoScreen = (props: Props) => {
   // 焦点
@@ -40,44 +44,40 @@ export const PersonalInfoScreen = (props: Props) => {
     //   index: 0,
     // });
   }, []);
+
+  const renderHeader = useCallback(() => {
+    return <View style={{ height: 200, backgroundColor: 'green' }}></View>;
+  }, []);
+
+  const [scrollY] = useState<Animated.Value>(new Animated.Value(0));
+  const textRef = useRef(null);
+  const onScrollMJ = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    {
+      useNativeDriver: false,
+      listener: e => {
+        const y = e.nativeEvent.contentOffset.y;
+        console.log('textRef==', textRef.current);
+
+        // textRef.current.scrollTo({
+        //   animated: false,
+        //   y: y,
+        // });
+        console.log('e===', e.nativeEvent.contentOffset.y);
+      },
+    }
+  );
   return (
-    <View style={{ flex: 1, backgroundColor: 'green' }}>
+    <View style={{ flex: 1 }}>
       {/* <FocusAwareStatusBar barStyle={'dark-content'} /> */}
-      <BTouchable
-        style={{ height: 60, backgroundColor: Colors.color2F3032 }}
-        onPress={onPress}
-      >
-        <Text>HomeScreen</Text>
-      </BTouchable>
-      <View style={{ marginLeft: 20 }}>
-        <ShadowView
-          style={[
-            {
-              width: 100,
-              height: 100,
-              margin: 40,
-            },
-            {
-              shadowColor: 'blue',
-              shadowOffset: {
-                width: 1,
-                height: 8,
-              },
-              shadowOpacity: 0.5,
-            },
-          ]}
-        >
-          <View
-            style={{
-              width: 100,
-              height: 100,
-              backgroundColor: 'blue',
-            }}
-          >
-            <View style={{ width: 80 }} />
-          </View>
-        </ShadowView>
-      </View>
+      <YTNestedScrollView renderHeader={renderHeader}>
+        <TestView
+          titleLabel={'aa'}
+          onScrollView={onScrollMJ}
+          scrollRef={textRef}
+        />
+        <TestView titleLabel={'bb'} />
+      </YTNestedScrollView>
     </View>
   );
 };

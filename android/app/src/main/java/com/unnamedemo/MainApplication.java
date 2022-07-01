@@ -1,6 +1,7 @@
 package com.unnamedemo;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -8,7 +9,9 @@ import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.imlib.RNChatLibPackage;
 import com.mou.basemvvm.BaseApplication;
+import com.tencent.RNImLibTencentPackage;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -28,6 +31,9 @@ public class MainApplication extends BaseApplication implements ReactApplication
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
+            packages.add(new RNChatLibPackage());
+            packages.add(new RNImLibTencentPackage());
+            Log.d("villa", "RNChatLibPackage: ====");
           return packages;
         }
 

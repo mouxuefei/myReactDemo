@@ -12,4 +12,5 @@ export enum ScreenConstants {
   Detail = 'Detail',
   Detail2 = 'Detail2',
   Detail3 = 'Detail3',
+  ClassifyPage = 'ClassifyPage',
 }

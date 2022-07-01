@@ -7,6 +7,7 @@ import { SplashScreen } from './splash/SplashScreen';
 import { UserAgreementScreen } from './userAgreement/UserAgreementScreen';
 import { DetailScreen2 } from './detail/DetailScreen2';
 import { DetailScreen3 } from './detail/DetailScreen3';
+import { ClassifyPage } from './classfiy/ClassfiyScreen';
 export interface RouterConfig {
   route: string; // 页面路由
   page: React.ComponentType<any>; // 页面
@@ -41,6 +42,11 @@ export const stackPages: Array<RouterConfig> = [
   {
     route: ScreenConstants.Detail3,
     page: DetailScreen3,
+    description: '',
+  },
+  {
+    route: ScreenConstants.ClassifyPage,
+    page: ClassifyPage,
     description: '',
   },
 ];

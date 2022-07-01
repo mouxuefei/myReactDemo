@@ -6,6 +6,7 @@ import {
   LayoutProvider,
 } from 'recyclerlistview';
 import { CellContainer } from './CellContainer';
+import { MessageList } from './Message';
 
 const ViewTypes = {
   FULL: 0,
@@ -109,10 +110,27 @@ export class DetailScreen3 extends React.Component {
 
   render() {
     return (
-      <RecyclerListView
-        layoutProvider={this._layoutProvider}
-        dataProvider={this.state.dataProvider}
-        rowRenderer={this._rowRenderer}
+      <MessageList
+        style={{ flex: 1 }}
+        // onMsgClick={_onMessagePress}
+        // onLinkClick={_onOpenURL}
+        // onAvatarClick={_onAvatarPress}
+        // onStatusViewClick={_onStatusViewClick}
+        // onTouchMsgList={_onTouchMsgList}
+        // onClickChangeAutoScroll={_onClickChangeAutoScroll}
+        // onPullToRefresh={_loadMoreContentAsync}
+        sendBubble={{ imageName: 'send_msg', padding: 10 }}
+        receiveBubbleTextColor='#ffffff'
+        sendBubbleTextSize={14}
+        receiveBubbleTextSize={14}
+        sendBubblePressedColor='#dddddd'
+        eventMsgTxtColor='#ffffff'
+        eventMsgTxtSize={12}
+        initList={[
+          { msgType: 'text', text: 'aaaa' },
+          { msgType: 'text', text: 'aaaa' },
+          { msgType: 'text', text: 'aaaa' },
+        ]}
       />
     );
   }

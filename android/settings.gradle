@@ -1,3 +1,8 @@
 rootProject.name = 'unNameDemo'
+include ':react-native-chat-lib'
+project(':react-native-chat-lib').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-chat-lib/android')
+include ':react-native-im-lib-tencent'
+project(':react-native-im-lib-tencent').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-im-lib-tencent/android')
+
 apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
 include ':app', ':lib_basemvvm', ':lib_common'

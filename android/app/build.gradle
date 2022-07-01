@@ -212,6 +212,8 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':lib_common')
+    implementation project(':react-native-chat-lib')
+    implementation project(':react-native-im-lib-tencent')
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

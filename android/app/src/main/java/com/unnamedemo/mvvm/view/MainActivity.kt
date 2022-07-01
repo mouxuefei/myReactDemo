@@ -22,7 +22,7 @@ class MainActivity : BaseActivity<MainViewModel>() {
         }
 
         btn_login.setOnClickListener {
-            startActivity(Intent(this@MainActivity, RNPageActivity::class.java))
+            startActivity(Intent(this@MainActivity, SecondActivity::class.java))
         }
 
         btn_mine.setOnClickListener {
