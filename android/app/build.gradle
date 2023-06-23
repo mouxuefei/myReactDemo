@@ -143,7 +143,7 @@ android {
         versionName rootProject.ext.android["versionName"]
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a","x86"
+            abiFilters "armeabi-v7a", "arm64-v8a"
         }
         manifestPlaceholders = [
                 appId: "xxxx",
@@ -207,13 +207,26 @@ android {
 //            }
         }
     }
+
+    packagingOptions {
+        pickFirst 'lib/armeabi-v7a/libfbjni.so'
+        pickFirst 'lib/arm64-v8a/libfbjni.so'
+        pickFirst 'lib/x86_64/libfbjni.so'
+        pickFirst 'lib/x86/libfbjni.so'
+        pickFirst 'lib/x86_64/libjsc.so'
+        pickFirst 'lib/x86/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libjsc.so'
+        pickFirst 'lib/arm64-v8a/libc++_shared.so'
+        pickFirst 'lib/x86_64/libc++_shared.so'
+        pickFirst 'lib/x86/libc++_shared.so'
+        pickFirst 'lib/armeabi-v7a/libc++_shared.so'
+        exclude 'META-INF/INDEX.LIST'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation project(':lib_common')
-    implementation project(':react-native-chat-lib')
-    implementation project(':react-native-im-lib-tencent')
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {

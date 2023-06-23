@@ -46,7 +46,7 @@ export const SplashScreen: FC<Props> = (props: Props) => {
           }}
         />
       </Animatable.View> */}
-      <MessageListView
+      {/* <MessageListView
         style={{ flex: 1, backgroundColor: 'green' }}
         initList={[
           { msgId: '11', msgType: 1, text: '1111' },
@@ -75,7 +75,7 @@ export const SplashScreen: FC<Props> = (props: Props) => {
         jsClick={(data: any) => {
           console.log('aaa========================', data.nativeEvent);
         }}
-      />
+      /> */}
       <View style={{ height: 100, backgroundColor: 'red' }}></View>
     </MultiContainer>
   );

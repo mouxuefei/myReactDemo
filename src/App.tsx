@@ -35,6 +35,6 @@ function setupNavigation() {
 
 function start() {
   prepare();
-  setupNavigation();
+   setupNavigation();
 }
 export { start };

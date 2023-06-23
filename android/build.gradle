@@ -6,9 +6,9 @@ buildscript {
         kotlinVersion = "1.5.0"
     }
     repositories {
-//        google()
-//        jcenter()
-//        mavenCentral()
+        google()
+        mavenCentral()
+        jcenter()
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -20,13 +20,25 @@ buildscript {
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
+
+    subprojects {
+        project.configurations.all {
+            resolutionStrategy.eachDependency { details ->
+                 if (details.requested.group == 'androidx.appcompat'
+                         ) {
+                     details.useVersion "1.2.0"
+                 }
+            }
+        }
+    }
+
 }
 
 allprojects {
     repositories {
-//        mavenCentral()
-//        google()
-//        jcenter()
+        mavenCentral()
+        google()
+        jcenter()
         maven { url 'https://plugins.gradle.org/m2/' }
         maven { url 'http://maven.aliyun.com/nexus/content/repositories/google' }
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
@@ -42,6 +54,7 @@ allprojects {
         }
         maven { url 'https://www.jitpack.io' }
     }
+
 }
 
 
